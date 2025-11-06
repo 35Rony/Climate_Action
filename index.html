@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Action Now - SDG 13</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 83, 55, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(26, 83, 55, 1);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: #4ade80;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4ade80;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Page Container */
+        .page-container {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page-container.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 83, 55, 0.9), rgba(34, 139, 34, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%231a5337" width="1200" height="600"/><path fill="%232d7a4f" d="M0 300L50 320L100 310L150 330L200 315L250 335L300 320L350 340L400 325L450 345L500 330L550 350L600 335L650 355L700 340L750 360L800 345L850 365L900 350L950 370L1000 355L1050 375L1100 360L1150 380L1200 365V600H0Z"/><path fill="%23228b22" d="M0 400L50 415L100 410L150 425L200 415L250 430L300 420L350 435L400 425L450 440L500 430L550 445L600 435L650 450L700 440L750 455L800 445L850 460L900 450L950 465L1000 455L1050 470L1100 460L1150 475L1200 465V600H0Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .slogan {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #4ade80;
+            color: #1a5337;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(74, 222, 128, 0.6);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* SDG Section */
+        .sdg-section {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1a5337;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .sdg-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .sdg-image {
+            text-align: center;
+        }
+
+        .sdg-logo {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .sdg-text h3 {
+            color: #1a5337;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .sdg-text p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1a5337, #228b22);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #4ade80;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* About Page Styles */
+        .about-hero {
+            padding: 8rem 5% 3rem;
+            background: linear-gradient(135deg, #1a5337, #228b22);
+            color: white;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section {
+            padding: 4rem 5%;
+        }
+
+        .content-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .info-card h3 {
+            color: #1a5337;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-card h3 i {
+            color: #4ade80;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #4ade80;
+        }
+
+        .info-item h4 {
+            color: #1a5337;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Calculator Styles */
+        .calculator-container {
+            padding: 8rem 5% 5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calculator-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1a5337;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4ade80;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: #1a5337;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .calculate-btn:hover {
+            background: #228b22;
+            transform: translateY(-2px);
+        }
+
+        .result-container {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #f0fdf4;
+            border-radius: 10px;
+            border-left: 4px solid #4ade80;
+            display: none;
+        }
+
+        .result-container.show {
+            display: block;
+            animation: fadeInUp 0.5s;
+        }
+
+        .result-number {
+            font-size: 3rem;
+            color: #1a5337;
+            font-weight: 700;
+        }
+
+        .suggestions {
+            margin-top: 1.5rem;
+        }
+
+        .suggestions h4 {
+            color: #1a5337;
+            margin-bottom: 1rem;
+        }
+
+        .suggestions ul {
+            list-style: none;
+        }
+
+        .suggestions li {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .suggestions li i {
+            color: #4ade80;
+        }
+
+        /* Countdown Styles */
+        .countdown-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 83, 55, 0.95), rgba(34, 139, 34, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%231a5337" width="1200" height="800"/><circle cx="600" cy="400" r="300" fill="%23228b22" opacity="0.3"/><circle cx="300" cy="600" r="200" fill="%232d7a4f" opacity="0.2"/><circle cx="900" cy="300" r="250" fill="%23228b22" opacity="0.2"/></svg>');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .countdown-content {
+            max-width: 900px;
+        }
+
+        .countdown-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .countdown-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .countdown-timer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .time-value {
+            font-size: 4rem;
+            font-weight: 700;
+            display: block;
+            color: #4ade80;
+        }
+
+        .time-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .motivation {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0;
+            color: #4ade80;
+        }
+
+        /* Gallery Styles */
+        .gallery-container {
+            padding: 8rem 5% 5rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .slider-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .slider-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .slider-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .before-img {
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            color: white;
+        }
+
+        .after-img {
+            background: linear-gradient(135deg, #ef4444, #f87171);
+            color: white;
+            opacity: 0;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: white;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+
+        .slider-handle::before {
+            content: '⟷';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #1a5337;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .slider-info {
+            padding: 1.5rem;
+        }
+
+        .slider-info h3 {
+            color: #1a5337;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Styles */
+        .contact-container {
+            padding: 8rem 5% 5rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: #1a5337;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #228b22;
+        }
+
+        .actions-list {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .action-item:hover {
+            transform: translateX(10px);
+        }
+
+        .action-item i {
+            color: #4ade80;
+            font-size: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .action-content h4 {
+            color: #1a5337;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a5337;
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: rgba(26, 83, 55, 0.98);
+                padding: 2rem;
+                width: 250px;
+                height: calc(100vh - 70px);
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .slogan {
+                font-size: 1.3rem;
+            }
+
+            .countdown-content h1 {
+                font-size: 2rem;
+            }
+
+            .time-value {
+                font-size: 2.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')">
+                <i class="fas fa-leaf"></i>
+                Climate Action
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+                <li><a href="#" onclick="showPage('calculator')" id="nav-calculator">Calculator</a></li>
+                <li><a href="#" onclick="showPage('countdown')" id="nav-countdown">Countdown</a></li>
+                <li><a href="#" onclick="showPage('gallery')" id="nav-gallery">Gallery</a></li>
+                <li><a href="#" onclick="showPage('contact')" id="nav-contact">Take Action</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page-container active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-aos="fade-up">Climate Action Now</h1>
+                <p class="slogan" data-aos="fade-up" data-aos-delay="200">
+                    "There is no Planet B. Act Now, Before It's Too Late."
+                </p>
+                <p data-aos="fade-up" data-aos-delay="400">
+                    Join the global movement to combat climate change and protect our planet for future generations.
+                </p>
+                <button class="cta-button" onclick="showPage('about')" data-aos="fade-up" data-aos-delay="600">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <section class="sdg-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">SDG 13: Climate Action</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                    Take urgent action to combat climate change and its impacts
+                </p>
+
+                <div class="sdg-content">
+                    <div class="sdg-image" data-aos="fade-right">
+                        <svg class="sdg-logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                            <rect fill="#3f7e44" width="400" height="400"/>
+                            <circle cx="200" cy="200" r="150" fill="none" stroke="#fff" stroke-width="8"/>
+                            <path d="M200 80 L240 140 L310 140 L260 180 L280 240 L200 200 L120 240 L140 180 L90 140 L160 140 Z" fill="#4ade80"/>
+                            <text x="200" y="320" font-size="80" font-weight="bold" fill="#fff" text-anchor="middle" font-family="Poppins">13</text>
+                            <text x="200" y="360" font-size="24" fill="#fff" text-anchor="middle" font-family="Poppins">CLIMATE ACTION</text>
+                        </svg>
+                    </div>
+                    <div class="sdg-text" data-aos="fade-left">
+                        <h3>What is SDG 13?</h3>
+                        <p>
+                            SDG 13 calls for urgent action to combat climate change and its impacts. It recognizes that climate change is a global challenge that requires coordinated international cooperation and immediate action at all levels.
+                        </p>
+                        <p>
+                            The goal aims to strengthen resilience and adaptive capacity to climate-related hazards, integrate climate change measures into national policies, and improve education and awareness on climate change mitigation and adaptation.
+                        </p>
+                        <p>
+                            Every individual, community, and nation has a role to play in addressing this critical challenge.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-temperature-high"></i>
+                        <div class="stat-number">1.1°C</div>
+                        <div class="stat-label">Global Temperature Rise Since 1880</div>
+                    </div>
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-industry"></i>
+                        <div class="stat-number">37Gt</div>
+                        <div class="stat-label">CO2 Emissions Per Year (2023)</div>
+                    </div>
+                    <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-water"></i>
+                        <div class="stat-number">20cm</div>
+                        <div class="stat-label">Sea Level Rise Since 1880</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Climate Action Now | SDG 13 Awareness Project</p>
+            <p>Together, we can make a difference for our planet.</p>
+        </footer>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="page-about" class="page-container">
+        <div class="about-hero">
+            <h1 data-aos="fade-up">Understanding Climate Change</h1>
+            <p data-aos="fade-up" data-aos-delay="200">The science, impacts, and solutions</p>
+        </div>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="info-card" data-aos="fade-up">
+                    <h3><i class="fas fa-fire"></i> Causes of Climate Change</h3>
+                    <p>Climate change is primarily caused by human activities that release greenhouse gases into the atmosphere. Understanding these causes is the first step toward meaningful action.</p>
+                    <div class="info-grid">
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="100">
+                            <h4>Rising Temperatures</h4>
+                            <p>Global average temperatures are increasing, causing heatwaves and changing weather patterns.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="200">
+                            <h4>Melting Ice & Rising Seas</h4>
+                            <p>Polar ice caps and glaciers are melting, causing sea levels to rise and threatening coastal areas.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+                            <h4>Extreme Weather</h4>
+                            <p>More frequent hurricanes, floods, droughts, and wildfires devastate communities worldwide.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="400">
+                            <h4>Biodiversity Loss</h4>
+                            <p>Species extinction accelerates as habitats change faster than organisms can adapt.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="500">
+                            <h4>Food & Water Insecurity</h4>
+                            <p>Changing rainfall patterns and temperatures affect agriculture and fresh water supplies.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="600">
+                            <h4>Health Impacts</h4>
+                            <p>Heat stress, disease spread, and air pollution increasingly threaten human health.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="info-card" data-aos="fade-up">
+                    <h3><i class="fas fa-lightbulb"></i> Solutions to Climate Change</h3>
+                    <p>While the challenge is significant, we have the knowledge and technology to address climate change. Action at all levels is essential.</p>
+                    <div class="info-grid">
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="100">
+                            <h4>Renewable Energy</h4>
+                            <p>Transition to solar, wind, hydro, and other clean energy sources to replace fossil fuels.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="200">
+                            <h4>Energy Efficiency</h4>
+                            <p>Improve building insulation, use LED lighting, and adopt efficient appliances.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+                            <h4>Sustainable Transport</h4>
+                            <p>Use public transit, cycling, walking, and electric vehicles to reduce emissions.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="400">
+                            <h4>Reforestation</h4>
+                            <p>Plant trees and restore forests to absorb CO2 and protect biodiversity.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="500">
+                            <h4>Sustainable Agriculture</h4>
+                            <p>Adopt regenerative farming, reduce meat consumption, and minimize food waste.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="600">
+                            <h4>Policy & Education</h4>
+                            <p>Support climate policies, educate communities, and drive systemic change.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Climate Action Now | SDG 13 Awareness Project</p>
+            <p>Together, we can make a difference for our planet.</p>
+        </footer>
+    </div>
+
+    <!-- CALCULATOR PAGE -->
+    <div id="page-calculator" class="page-container">
+        <div class="calculator-container">
+            <h1 class="section-title" data-aos="fade-up">CO2 Emission Calculator</h1>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Calculate your daily carbon footprint and get personalized suggestions
+            </p>
+
+            <div class="calculator-form" data-aos="fade-up" data-aos-delay="200">
+                <div class="form-group">
+                    <label><i class="fas fa-car"></i> Daily Travel Distance (km)</label>
+                    <input type="number" id="travel-distance" placeholder="e.g., 20" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-road"></i> Mode of Transport</label>
+                    <select id="transport-mode">
+                        <option value="car">Private Car (Petrol/Diesel)</option>
+                        <option value="electric">Electric Vehicle</option>
+                        <option value="bus">Public Bus</option>
+                        <option value="train">Train</option>
+                        <option value="motorcycle">Motorcycle</option>
+                        <option value="bicycle">Bicycle/Walk (Zero Emissions)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-bolt"></i> Daily Electricity Usage (kWh)</label>
+                    <input type="number" id="electricity" placeholder="e.g., 15" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-utensils"></i> Diet Type</label>
+                    <select id="diet">
+                        <option value="meat">High Meat Consumer</option>
+                        <option value="moderate">Moderate Meat Consumer</option>
+                        <option value="low">Low Meat Consumer</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-trash"></i> Waste Management</label>
+                    <select id="waste">
+                        <option value="none">No Recycling</option>
+                        <option value="some">Some Recycling</option>
+                        <option value="most">Most Items Recycled</option>
+                    </select>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateEmissions()">
+                    <i class="fas fa-calculator"></i> Calculate My Footprint
+                </button>
+
+                <div class="result-container" id="result">
+                    <h3>Your Daily CO2 Emissions</h3>
+                    <div class="result-number" id="total-emissions">0 kg</div>
+                    <p>Per year: <strong id="yearly-emissions">0 kg</strong></p>
+                    
+                    <div class="suggestions">
+                        <h4><i class="fas fa-leaf"></i> Personalized Suggestions</h4>
+                        <ul id="suggestions-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Climate Action Now | SDG 13 Awareness Project</p>
+            <p>Together, we can make a difference for our planet.</p>
+        </footer>
+    </div>
+
+    <!-- COUNTDOWN PAGE -->
+    <div id="page-countdown" class="page-container">
+        <div class="countdown-container">
+            <div class="countdown-content">
+                <h1 data-aos="fade-up">Earth Hour 2025</h1>
+                <p data-aos="fade-up" data-aos-delay="200">
+                    Join millions worldwide in the largest grassroots movement for the environment
+                </p>
+
+                <div class="countdown-timer" data-aos="fade-up" data-aos-delay="400">
+                    <div class="time-box">
+                        <span class="time-value" id="days">00</span>
+                        <span class="time-label">Days</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-value" id="hours">00</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-value" id="minutes">00</span>
+                        <span class="time-label">Minutes</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-value" id="seconds">00</span>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                </div>
+
+                <div class="motivation" data-aos="fade-up" data-aos-delay="600">
+                    <p id="motivation-text">Every action counts! Prepare to make a difference.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="800">
+                    <h3 style="margin-bottom: 1rem;">What is Earth Hour?</h3>
+                    <p style="max-width: 700px; margin: 0 auto 2rem;">
+                        Earth Hour is a worldwide movement organized by WWF. It takes place on the last Saturday of March annually, encouraging individuals, communities, and businesses to turn off non-essential electric lights for one hour to raise awareness about climate change and energy consumption.
+                    </p>
+                    <button class="cta-button" onclick="showPage('contact')">
+                        Pledge Your Support <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALLERY PAGE -->
+    <div id="page-gallery" class="page-container">
+        <div class="gallery-container">
+            <h1 class="section-title" data-aos="fade-up">Climate Change Impact Gallery</h1>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Before and After: Witnessing the effects of climate change
+            </p>
+
+            <div class="gallery-grid">
+                <div class="slider-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="slider-container">
+                        <div class="slider-image before-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-mountain" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Arctic Ice - 1980</h3>
+                                <p>Thick ice coverage</p>
+                            </div>
+                        </div>
+                        <div class="slider-image after-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-water" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Arctic Ice - 2024</h3>
+                                <p>Significantly reduced</p>
+                            </div>
+                        </div>
+                        <div class="slider-handle" data-slider="0"></div>
+                    </div>
+                    <div class="slider-info">
+                        <h3>Melting Arctic Ice</h3>
+                        <p>Arctic sea ice has declined by approximately 13% per decade since 1979.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="slider-container">
+                        <div class="slider-image before-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-tree" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Amazon Rainforest - 2000</h3>
+                                <p>Dense forest coverage</p>
+                            </div>
+                        </div>
+                        <div class="slider-image after-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-fire" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Amazon Rainforest - 2024</h3>
+                                <p>Deforested areas</p>
+                            </div>
+                        </div>
+                        <div class="slider-handle" data-slider="1"></div>
+                    </div>
+                    <div class="slider-info">
+                        <h3>Amazon Deforestation</h3>
+                        <p>Over 17% of the Amazon rainforest has been lost in the past 50 years.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="slider-container">
+                        <div class="slider-image before-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-icicles" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Glaciers - 1950</h3>
+                                <p>Full glacier extent</p>
+                            </div>
+                        </div>
+                        <div class="slider-image after-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-tint" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Glaciers - 2024</h3>
+                                <p>Retreated significantly</p>
+                            </div>
+                        </div>
+                        <div class="slider-handle" data-slider="2"></div>
+                    </div>
+                    <div class="slider-info">
+                        <h3>Glacier Retreat</h3>
+                        <p>Glaciers worldwide are losing ice at accelerating rates, threatening water supplies.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="slider-container">
+                        <div class="slider-image before-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-cloud-rain" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Lake Chad - 1963</h3>
+                                <p>Large freshwater lake</p>
+                            </div>
+                        </div>
+                        <div class="slider-image after-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-sun" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Lake Chad - 2024</h3>
+                                <p>90% shrinkage</p>
+                            </div>
+                        </div>
+                        <div class="slider-handle" data-slider="3"></div>
+                    </div>
+                    <div class="slider-info">
+                        <h3>Drought & Water Loss</h3>
+                        <p>Lake Chad has shrunk by 90% since 1963 due to climate change and overuse.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="slider-container">
+                        <div class="slider-image before-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-fish" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Coral Reefs - 1990</h3>
+                                <p>Vibrant coral ecosystems</p>
+                            </div>
+                        </div>
+                        <div class="slider-image after-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-skull-crossbones" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Coral Reefs - 2024</h3>
+                                <p>Bleached and dying</p>
+                            </div>
+                        </div>
+                        <div class="slider-handle" data-slider="4"></div>
+                    </div>
+                    <div class="slider-info">
+                        <h3>Coral Bleaching</h3>
+                        <p>Rising ocean temperatures cause coral bleaching, destroying marine ecosystems.</p>
+                    </div>
+                </div>
+
+                <div class="slider-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="slider-container">
+                        <div class="slider-image before-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-city" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Coastal Cities - 2000</h3>
+                                <p>Safe from flooding</p>
+                            </div>
+                        </div>
+                        <div class="slider-image after-img">
+                            <div style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-house-flood" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                                <h3>Coastal Cities - 2024</h3>
+                                <p>Frequent flooding</p>
+                            </div>
+                        </div>
+                        <div class="slider-handle" data-slider="5"></div>
+                    </div>
+                    <div class="slider-info">
+                        <h3>Rising Sea Levels</h3>
+                        <p>Sea level rise threatens coastal communities and infrastructure worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Climate Action Now | SDG 13 Awareness Project</p>
+            <p>Together, we can make a difference for our planet.</p>
+        </footer>
+    </div>
+
+    <!-- CONTACT/TAKE ACTION PAGE -->
+    <div id="page-contact" class="page-container">
+        <div class="contact-container">
+            <h1 class="section-title" data-aos="fade-up">Take Action Now</h1>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Join the movement and make a difference for our planet
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-form" data-aos="fade-right">
+                    <h3 style="color: #1a5337; margin-bottom: 1.5rem;">Get Involved</h3>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Organization (Optional)">
+                        <textarea placeholder="How would you like to contribute to climate action?" required></textarea>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <div class="actions-list" data-aos="fade-left">
+                    <h3 style="color: #1a5337; margin-bottom: 1.5rem;">Individual Actions</h3>
+                    
+                    <div class="action-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <div class="action-content">
+                            <h4>Switch to Renewable Energy</h4>
+                            <p>Choose green energy providers or install solar panels at home.</p>
+                        </div>
+                    </div>
+
+                    <div class="action-item">
+                        <i class="fas fa-leaf"></i>
+                        <div class="action-content">
+                            <h4>Reduce, Reuse, Recycle</h4>
+                            <p>Minimize waste, buy second-hand, and recycle properly.</p>
+                        </div>
+                    </div>
+
+                    <div class="action-item">
+                        <i class="fas fa-bus"></i>
+                        <div class="action-content">
+                            <h4>Use Sustainable Transport</h4>
+                            <p>Walk, bike, carpool, or use public transportation when possible.</p>
+                        </div>
+                    </div>
+
+                    <div class="action-item">
+                        <i class="fas fa-seedling"></i>
+                        <div class="action-content">
+                            <h4>Plant Trees</h4>
+                            <p>Participate in tree-planting initiatives in your community.</p>
+                        </div>
+                    </div>
+
+                    <div class="action-item">
+                        <i class="fas fa-carrot"></i>
+                        <div class="action-content">
+                            <h4>Eat Sustainably</h4>
+                            <p>Reduce meat consumption, buy local, and minimize food waste.</p>
+                        </div>
+                    </div>
+
+                    <div class="action-item">
+                        <i class="fas fa-tshirt"></i>
+                        <div class="action-content">
+                            <h4>Choose Sustainable Fashion</h4>
+                            <p>Buy quality over quantity and support ethical brands.</p>
+                        </div>
+                    </div>
+
+                    <div class="action-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <div class="action-content">
+                            <h4>Spread Awareness</h4>
+                            <p>Educate others about climate change and inspire action.</p>
+                        </div>
+                    </div>
+
+                    <div class="action-item">
+                        <i class="fas fa-vote-yea"></i>
+                        <div class="action-content">
+                            <h4>Support Climate Policies</h4>
+                            <p>Vote for leaders who prioritize environmental protection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Climate Action Now | SDG 13 Awareness Project</p>
+            <p>Together, we can make a difference for our planet.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Page Navigation
+        function showPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page-container').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById('page-' + pageName).classList.add('active');
+            
+            // Update nav active state
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.getElementById('nav-' + pageName).classList.add('active');
+            
+            // Close mobile menu
+            document.getElementById('navLinks').classList.remove('active');
+            const icon = document.querySelector('#menuToggle i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Refresh AOS
+            AOS.refresh();
+            
+            // Start countdown if on countdown page
+            if (pageName === 'countdown') {
+                startCountdown();
+            }
+        }
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // CO2 Calculator
+        function calculateEmissions() {
+            const distance = parseFloat(document.getElementById('travel-distance').value) || 0;
+            const transport = document.getElementById('transport-mode').value;
+            const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+            const diet = document.getElementById('diet').value;
+            const waste = document.getElementById('waste').value;
+
+            // Emission factors (kg CO2 per unit)
+            const transportEmissions = {
+                car: distance * 0.21,
+                electric: distance * 0.05,
+                bus: distance * 0.089,
+                train: distance * 0.041,
+                motorcycle: distance * 0.113,
+                bicycle: 0
+            };
+
+            const dietEmissions = {
+                meat: 7.2,
+                moderate: 5.6,
+                low: 4.7,
+                vegetarian: 3.8,
+                vegan: 2.9
+            };
+
+            const wasteEmissions = {
+                none: 2.5,
+                some: 1.5,
+                most: 0.5
+            };
+
+            // Calculate total
+            const transportCO2 = transportEmissions[transport];
+            const electricityCO2 = electricity * 0.5; // Average grid intensity
+            const dietCO2 = dietEmissions[diet];
+            const wasteCO2 = wasteEmissions[waste];
+
+            const totalDaily = transportCO2 + electricityCO2 + dietCO2 + wasteCO2;
+            const totalYearly = totalDaily * 365;
+
+            // Display results
+            document.getElementById('total-emissions').textContent = totalDaily.toFixed(2) + ' kg';
+            document.getElementById('yearly-emissions').textContent = totalYearly.toFixed(2) + ' kg';
+
+            // Generate suggestions
+            const suggestions = [];
+            
+            if (transport === 'car' && distance > 0) {
+                suggestions.push('<i class="fas fa-check"></i> Switch to public transport or carpool to reduce emissions by 60%');
+            }
+            if (electricity > 10) {
+                suggestions.push('<i class="fas fa-check"></i> Use energy-efficient appliances and LED bulbs');
+            }
+            if (diet === 'meat') {
+                suggestions.push('<i class="fas fa-check"></i> Try "Meatless Mondays" to reduce dietary emissions by 15%');
+            }
+            if (waste === 'none') {
+                suggestions.push('<i class="fas fa-check"></i> Start recycling to reduce waste emissions by 80%');
+            }
+            if (totalDaily < 5) {
+                suggestions.push('<i class="fas fa-star"></i> Great job! You\'re already below the sustainable target');
+            } else if (totalDaily > 15) {
+                suggestions.push('<i class="fas fa-exclamation-triangle"></i> Your footprint is high. Small changes can make a big difference!');
+            }
+
+            const suggestionsList = document.getElementById('suggestions-list');
+            suggestionsList.innerHTML = suggestions.map(s => '<li>' + s + '</li>').join('');
+
+            // Show results
+            document.getElementById('result').classList.add('show');
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Countdown Timer
+        function startCountdown() {
+            // Earth Hour 2025: Last Saturday of March (March 29, 2025, 8:30 PM)
+            const earthHour = new Date('2025-03-29T20:30:00').getTime();
+
+            const updateTimer = () => {
+                const now = new Date().getTime();
+                const distance = earthHour - now;
+
+                if (distance < 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    document.getElementById('motivation-text').textContent = 'Earth Hour has begun! Turn off your lights for one hour!';
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+                // Motivational messages
+                if (days > 30) {
+                    document.getElementById('motivation-text').textContent = 'Start planning your Earth Hour event!';
+                } else if (days > 7) {
+                    document.getElementById('motivation-text').textContent = 'Spread the word and invite others to join!';
+                } else if (days > 0) {
+                    document.getElementById('motivation-text').textContent = 'The countdown is on! Get ready to switch off!';
+                } else {
+                    document.getElementById('motivation-text').textContent = 'Today is the day! Prepare to make a statement!';
+                }
+            };
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        // Image Slider for Gallery
+        document.addEventListener('DOMContentLoaded', () => {
+            const sliderHandles = document.querySelectorAll('.slider-handle');
+            
+            sliderHandles.forEach((handle, index) => {
+                let isDragging = false;
+                
+                const slider = handle.closest('.slider-container');
+                const afterImg = slider.querySelector('.after-img');
+                
+                handle.addEventListener('mousedown', () => isDragging = true);
+                document.addEventListener('mouseup', () => isDragging = false);
+                
+                slider.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+                    
+                    const rect = slider.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const percentage = (x / rect.width) * 100;
+                    
+                    if (percentage >= 0 && percentage <= 100) {
+                        handle.style.left = percentage + '%';
+                        afterImg.style.opacity = (percentage / 100);
+                    }
+                });
+                
+                // Touch support for mobile
+                handle.addEventListener('touchstart', () => isDragging = true);
+                document.addEventListener('touchend', () => isDragging = false);
+                
+                slider.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    
+                    const rect = slider.getBoundingClientRect();
+                    const x = e.touches[0].clientX - rect.left;
+                    const percentage = (x / rect.width) * 100;
+                    
+                    if (percentage >= 0 && percentage <= 100) {
+                        handle.style.left = percentage + '%';
+                        afterImg.style.opacity = (percentage / 100);
+                    }
+                });
+            });
+        });
+
+        // Contact Form Handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Simulate form submission
+            const btn = event.target.querySelector('.submit-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                btn.style.background = '#4ade80';
+                
+                setTimeout(() => {
+                    event.target.reset();
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    
+                    alert('Thank you for your commitment to climate action! Together we can make a difference.');
+                }, 2000);
+            }, 1500);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>="100">
+                            <h4>Fossil Fuel Burning</h4>
+                            <p>Coal, oil, and gas combustion for energy and transportation releases massive amounts of CO2.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="200">
+                            <h4>Deforestation</h4>
+                            <p>Cutting down forests reduces Earth's capacity to absorb CO2 and releases stored carbon.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+                            <h4>Industrial Processes</h4>
+                            <p>Manufacturing, cement production, and chemical processes emit significant greenhouse gases.</p>
+                        </div>
+                        <div class="info-item" data-aos="fade-up" data-aos-delay="400">
+                            <h4>Agriculture</h4>
+                            <p>Livestock farming produces methane, while fertilizers release nitrous oxide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="info-card" data-aos="fade-up">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Effects of Climate Change</h3>
+                    <p>The impacts of climate change are already being felt worldwide, affecting ecosystems, economies, and communities.</p>
+                    <div class="info-grid">
+                        <div class="info-item" data-aos="fade-up" data-aos-delay
