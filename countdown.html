@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown - SDG 13</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="styles.css">  
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                Climate Action
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="countdown.html" class="active">Countdown</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Take Action</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Countdown Section -->
+    <div class="countdown-container">
+            <div class="countdown-content">
+                <h1 data-aos="fade-up">Earth Hour 2025</h1>
+                <p data-aos="fade-up" data-aos-delay="200">
+                    Join millions worldwide in the largest grassroots movement for the environment
+                </p>
+
+                <div class="countdown-timer" data-aos="fade-up" data-aos-delay="400">
+                    <div class="time-box">
+                        <span class="time-value" id="days">00</span>
+                        <span class="time-label">Days</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-value" id="hours">00</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-value" id="minutes">00</span>
+                        <span class="time-label">Minutes</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time-value" id="seconds">00</span>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                </div>
+
+                <div class="motivation" data-aos="fade-up" data-aos-delay="600">
+                    <p id="motivation-text">Every action counts! Prepare to make a difference.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="800">
+                    <h3 style="margin-bottom: 1rem;">What is Earth Hour?</h3>
+                    <p style="max-width: 700px; margin: 0 auto 2rem;">
+                        Earth Hour is a worldwide movement organized by WWF. It takes place on the last Saturday of March annually, encouraging individuals, communities, and businesses to turn off non-essential electric lights for one hour to raise awareness about climate change and energy consumption.
+                    </p>
+                    <button class="cta-button" onclick="showPage('contact')">
+                        Pledge Your Support <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Climate Action Now | SDG 13 Awareness Project</p>
+        <p>Together, we can make a difference for our planet.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

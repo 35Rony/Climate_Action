@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Action - SDG 13</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                Climate Action
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="countdown.html">Countdown</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html" class="active">Take Action</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Container -->
+    <div class="contact-container">
+        <h1 class="section-title" data-aos="fade-up">Take Action Now</h1>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Join the movement and make a difference for our planet
+        </p>
+
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form" data-aos="fade-right">
+                <h3 style="color: #1a5337; margin-bottom: 1.5rem;">Get Involved</h3>
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Organization (Optional)">
+                    <textarea placeholder="How would you like to contribute to climate action?" required></textarea>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- Actions List -->
+            <div class="actions-list" data-aos="fade-left">
+                <h3 style="color: #1a5337; margin-bottom: 1.5rem;">Individual Actions</h3>
+                
+                <div class="action-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <div class="action-content">
+                        <h4>Switch to Renewable Energy</h4>
+                        <p>Choose green energy providers or install solar panels at home.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <i class="fas fa-leaf"></i>
+                    <div class="action-content">
+                        <h4>Reduce, Reuse, Recycle</h4>
+                        <p>Minimize waste, buy second-hand, and recycle properly.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <i class="fas fa-bus"></i>
+                    <div class="action-content">
+                        <h4>Use Sustainable Transport</h4>
+                        <p>Walk, bike, carpool, or use public transportation when possible.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <i class="fas fa-seedling"></i>
+                    <div class="action-content">
+                        <h4>Plant Trees</h4>
+                        <p>Participate in tree-planting initiatives in your community.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <i class="fas fa-carrot"></i>
+                    <div class="action-content">
+                        <h4>Eat Sustainably</h4>
+                        <p>Reduce meat consumption, buy local, and minimize food waste.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <i class="fas fa-tshirt"></i>
+                    <div class="action-content">
+                        <h4>Choose Sustainable Fashion</h4>
+                        <p>Buy quality over quantity and support ethical brands.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <div class="action-content">
+                        <h4>Spread Awareness</h4>
+                        <p>Educate others about climate change and inspire action.</p>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <i class="fas fa-vote-yea"></i>
+                    <div class="action-content">
+                        <h4>Support Climate Policies</h4>
+                        <p>Vote for leaders who prioritize environmental protection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Climate Action Now | SDG 13 Awareness Project</p>
+        <p>Together, we can make a difference for our planet.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

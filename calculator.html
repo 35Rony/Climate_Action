@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - SDG 13</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-leaf"></i>
+                Climate Action
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="calculator.html" class="active">Calculator</a></li>
+                <li><a href="countdown.html">Countdown</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Take Action</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Calculator Section -->
+   <div class="calculator-container">
+            <h1 class="section-title" data-aos="fade-up">CO2 Emission Calculator</h1>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Calculate your daily carbon footprint and get personalized suggestions
+            </p>
+
+            <div class="calculator-form" data-aos="fade-up" data-aos-delay="200">
+                <div class="form-group">
+                    <label><i class="fas fa-car"></i> Daily Travel Distance (km)</label>
+                    <input type="number" id="travel-distance" placeholder="e.g., 20" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-road"></i> Mode of Transport</label>
+                    <select id="transport-mode">
+                        <option value="car">Private Car (Petrol/Diesel)</option>
+                        <option value="electric">Electric Vehicle</option>
+                        <option value="bus">Public Bus</option>
+                        <option value="train">Train</option>
+                        <option value="motorcycle">Motorcycle</option>
+                        <option value="bicycle">Bicycle/Walk (Zero Emissions)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-bolt"></i> Daily Electricity Usage (kWh)</label>
+                    <input type="number" id="electricity" placeholder="e.g., 15" min="0">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-utensils"></i> Diet Type</label>
+                    <select id="diet">
+                        <option value="meat">High Meat Consumer</option>
+                        <option value="moderate">Moderate Meat Consumer</option>
+                        <option value="low">Low Meat Consumer</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-trash"></i> Waste Management</label>
+                    <select id="waste">
+                        <option value="none">No Recycling</option>
+                        <option value="some">Some Recycling</option>
+                        <option value="most">Most Items Recycled</option>
+                    </select>
+                </div>
+
+                <button class="calculate-btn" onclick="calculateEmissions()">
+                    <i class="fas fa-calculator"></i> Calculate My Footprint
+                </button>
+
+                <div class="result-container" id="result">
+                    <h3>Your Daily CO2 Emissions</h3>
+                    <div class="result-number" id="total-emissions">0 kg</div>
+                    <p>Per year: <strong id="yearly-emissions">0 kg</strong></p>
+                    
+                    <div class="suggestions">
+                        <h4><i class="fas fa-leaf"></i> Personalized Suggestions</h4>
+                        <ul id="suggestions-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+ <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Climate Action Now | SDG 13 Awareness Project</p>
+        <p>Together, we can make a difference for our planet.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
